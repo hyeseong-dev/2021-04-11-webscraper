@@ -1,10 +1,11 @@
-
 import re
 import requests
-from bs4 import BeautifulSoup
+
+from pprint import pprint
+from bs4    import BeautifulSoup
 
 LIMIT = 50
-URL = 'https://kr.indeed.com/%EC%B7%A8%EC%97%85?q=java&limit=999&start=9999'
+URL = 'https://kr.indeed.com/%EC%B7%A8%EC%97%85?q=python&limit=999&start=9999'
 
 def extract_indeed_pages():
     result = requests.get(URL)
@@ -14,28 +15,37 @@ def extract_indeed_pages():
     max_page = int(str_list_max_page[0])
     return max_page
 
+
+def extract_job(html):
+        title = html.find('h2', {'class':'title'}).find('a')['title']
+        company = html.find('span', {'class': 'company'}) # find: 첫 번째 찾은 결과를 돌려줌 V.S find_all : 전체를 찾아서 리스트에 담아 리턴함
+        company_anchor = company.find('a')
+        if company.find('a') is not None:
+            company = (str(company_anchor.string)) # str으로 만들어 주는 이유는 빈공백을 제거하기 위해 우선 문자열로 변환시킨 후 정제처리를 하기위함임.
+        else:
+            company = (str(company.string))
+        company  = company.strip()
+        location = html.find('div', {'class':'recJobLoc'})['data-rc-loc']
+        job_id   = html['data-jk']
+        
+        return {'title': title, 
+                'company': company, 
+                'location':location, 
+                'link': f'https://www.indeed.com/viewjob?jk={job_id}'
+            }
+
 def extract_indeed_jobs(last_page):
     jobs=list()
-
-    # for page in range(last_page):
-    result = requests.get(f'{URL}&start={0*LIMIT}')
-    soup = BeautifulSoup(result.text, 'html.parser')
-    results = soup.find_all('div', {'class':'jobsearch-SerpJobCard'})
-    for result in results:
-        title = result.find('h2', {'class':'title'}).find('a')['title']
-        company = result.find('span', {'class': 'company'})
-        print(company)
+    for page in range(last_page):
+        print(f"Scrapping page {page}")
+        result = requests.get(f'{URL}&start={page*LIMIT}')
+        soup = BeautifulSoup(result.text, 'html.parser')
+        results = soup.find_all('div', {'class':'jobsearch-SerpJobCard'})
+        for result in results:
+            job = extract_job(result)
+            jobs.append(job)
     return jobs
 
 
 
 
-# links = pagination.findAll('a')
-
-# pages = []
-# for link in links:
-#     pages.append(link.find('span').string)
-#     # pages+=link.find('span') # append 메서드와 동일한 결과
-
-# pages = pages[:-1]
-# print(pages)
