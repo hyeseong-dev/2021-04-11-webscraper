@@ -1,8 +1,11 @@
 from pprint import pprint
-from indeed import extract_indeed_pages, extract_indeed_jobs 
 
-last_indeed_page = extract_indeed_pages()
+from indeed import get_jobs as get_indeed_jobs
+from so     import get_jobs as get_so_jobs
 
-indeed_jobs = extract_indeed_jobs(last_indeed_page)
+# indeed_jobs = get_indeed_jobs()
+so_jobs = get_so_jobs()
 
-pprint(indeed_jobs) 
+# print(indeed_jobs)
+
+
