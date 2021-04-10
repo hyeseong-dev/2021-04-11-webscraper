@@ -36,15 +36,19 @@
 ### Directories Structure
 - scrapper 패키지
   + csv_exporter : 파이썬 데이터를 csv파일로 저장합니다.
-  + ![image](https://user-images.githubusercontent.com/57933835/114276299-00271a80-9a61-11eb-8198-edb3e63e736d.png)
+    - ![image](https://user-images.githubusercontent.com/57933835/114276299-00271a80-9a61-11eb-8198-edb3e63e736d.png)
+  
   + so.py        : 총 4개의 함수(get_lastpage,extract_job,extract_jobs,get_jobs)로 구성된 모듈입니다.
-  + ![image](https://user-images.githubusercontent.com/57933835/114276101-2b5d3a00-9a60-11eb-9680-93eab26bd246.png)
+    - ![image](https://user-images.githubusercontent.com/57933835/114276101-2b5d3a00-9a60-11eb-9680-93eab26bd246.png)
+  
   + indeed.py    : 총 4개의 함수로 구성된 모듈입니다.
-  + ![image](https://user-images.githubusercontent.com/57933835/114276336-2b116e80-9a61-11eb-80eb-0c899be49552.png)
+    - ![image](https://user-images.githubusercontent.com/57933835/114276336-2b116e80-9a61-11eb-80eb-0c899be49552.png)
+  
   + saramin.py   : 총 4개의 함수로 구성된 모듈입니다.
-  + ![image](https://user-images.githubusercontent.com/57933835/114276267-d837b700-9a60-11eb-8ad1-84c8b18fb152.png)
+    - ![image](https://user-images.githubusercontent.com/57933835/114276267-d837b700-9a60-11eb-8ad1-84c8b18fb152.png)
+  
   + main.py      : indeed, so, saramin 모듈들의 각기 다른 데이터를 단일 데이터로 만듭니다.
-  + ![image](https://user-images.githubusercontent.com/57933835/114276115-3fa13700-9a60-11eb-8ded-edd9e4afbb3e.png)
+    - ![image](https://user-images.githubusercontent.com/57933835/114276115-3fa13700-9a60-11eb-8ded-edd9e4afbb3e.png)
 
 - template 폴더  
   + home.html   :
