@@ -1,7 +1,7 @@
-# Job Search Scrapper 🚄
+# Job Search WebCrawler 🚄
 
 - 진행기간 : 2021년 04월 04일 ~ 2021년 04월 10일
-<img width="933" alt="Screen Shot 2020-12-24 at 5 49 39 PM" src="https://media.vlpt.us/images/hyeseong-dev/post/6291b043-39ed-4036-b603-ab9865b4f34f/image.png">
+![image](https://user-images.githubusercontent.com/57933835/114275508-c1dc2c00-9a5d-11eb-8d71-7e500cff9cdc.png)
 
 ## **🏠토이 프로젝트 소개**
 
