@@ -12,15 +12,6 @@
 
 > 구인 구직 정보 제공 사이트 Stackoverflow, Indeed, Saramin, 3곳을 이용하여 간단한 스크래퍼를 작성하였습니다.
 
-## **🏠**프로젝트 시연영상
-
-https://youtu.be/AaUEtWd0aq4
-
-## **🏠** 프로젝트 참가자 (Front & Back)
-
-### 👍 **BackEnd**
-
-- 이혜성, 
 
 ## **🌹기술 스택🌹**
 
