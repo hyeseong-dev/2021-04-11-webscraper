@@ -34,6 +34,9 @@
 ## 🌱 Backend
 
 ### Directories Structure
+![image](https://user-images.githubusercontent.com/57933835/114275790-ca813200-9a5e-11eb-8d91-2cc8ade2a2f5.png)
+
+
 - scrapper 패키지
   + csv_exporter : 파이썬 데이터를 csv파일로 저장합니다.
     - ![image](https://user-images.githubusercontent.com/57933835/114276299-00271a80-9a61-11eb-8198-edb3e63e736d.png)
@@ -101,17 +104,18 @@
   </body>
 </html>
 ```
-![image](https://user-images.githubusercontent.com/57933835/114275790-ca813200-9a5e-11eb-8d91-2cc8ade2a2f5.png)
+
 
 
 ### apps.py
+- ('/')       : 홈 화면에서는 입력창을 통해 원하는 조건에 맞는 키워드(ex. python)를 검색하여 데이터를 찾기 시작합니다.
+- ('/report') : 해당 키워드에 부합하는 결과를 모두 html파일에 랜더링하여 웹브라우저로 보여주게 됩니다. 
+- ('/export') : report 화면에서 csv download 링크 클릭시 키워드를 검색하여 나온 모든 데이터 결과를 파일로 다운받습니다.
+
 ![image](https://user-images.githubusercontent.com/57933835/114275736-9b6ac080-9a5e-11eb-8c6f-77a74e342f09.png)
 ![image](https://user-images.githubusercontent.com/57933835/114275757-afaebd80-9a5e-11eb-8e29-fe0f226a228c.png)
 
-
 ---
-
-
 
 # **레퍼런스**
 
