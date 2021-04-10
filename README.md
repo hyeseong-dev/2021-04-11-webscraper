@@ -1,7 +1,11 @@
 # Job Search WebCrawler 🚄
 
 - 진행기간 : 2021년 04월 04일 ~ 2021년 04월 10일
+[사진1]
 ![image](https://user-images.githubusercontent.com/57933835/114275508-c1dc2c00-9a5d-11eb-8d71-7e500cff9cdc.png)
+
+[사진2]
+![image](https://user-images.githubusercontent.com/57933835/114275615-21d2d280-9a5e-11eb-9892-672475c9900b.png)
 
 ## **🏠토이 프로젝트 소개**
 
@@ -13,12 +17,6 @@ https://youtu.be/AaUEtWd0aq4
 
 ## **🏠** 프로젝트 참가자 (Front & Back)
 
-![스크린샷 2020-12-27 12 21 59](https://trello-attachments.s3.amazonaws.com/5ffe5e702f034315a5e6adf3/1200x900/665cdf15fa44ec7da763297ff8936a9b/20210113_122134_306.jpg)
-
-### 👍 **FrontEnd**
-
-- 김병진, 김동하
-
 ### 👍 **BackEnd**
 
 - 이혜성, 
@@ -27,15 +25,15 @@ https://youtu.be/AaUEtWd0aq4
 
 ### **FrontEnd**
 
-- HTML / CSS / JavaScript (ES6) / React (CRA 세팅) / Sass
+- HTML / CSS / 
 
 ### **BackEnd**
 
-- Python / Django / CORS Header / Bcrypt / PyJWT / MySQL / AqueryTool (데이터베이스 모델링)
+- Python / Flask / poetry / bs4 / requests / 
 
-### **협업 도구**
+### **기타 도구**
 
-- Slack / Git + GitHub / [Trello](https://media.vlpt.us/images/hyeseong-dev/post/6cecf060-6881-4dd1-8d16-cc6d4c7b5f9a/image.png)를 이용, 일정관리 및 작업 현황 확인 / Postman (API 관리)
+- Slack / Git + GitHub / 
 
 ---
 
@@ -43,54 +41,81 @@ https://youtu.be/AaUEtWd0aq4
 
 ## 🌱 Backend
 
-### 모델링 구축
+### Directories Structure
+- scrapper 패키지
+  + csv_exporter : 파이썬 데이터를 csv파일로 저장합니다.
+  + so.py        : 총 4개의 함수로 구성된 모듈입니다.
+  ![image](https://user-images.githubusercontent.com/57933835/114276101-2b5d3a00-9a60-11eb-9680-93eab26bd246.png)
+  + indeed.py    : 총 4개의 함수로 구성된 모듈입니다.
+  + saramin.py   : 총 4개의 함수로 구성된 모듈입니다.
+  + main.py      : indeed, so, saramin 모듈들의 각기 다른 데이터를 단일 데이터로 만듭니다.
+![image](https://user-images.githubusercontent.com/57933835/114276115-3fa13700-9a60-11eb-8ded-edd9e4afbb3e.png)
 
-<img width="816" alt="모델링 최종" src="https://user-images.githubusercontent.com/57933835/111529254-46ac9080-87a5-11eb-9b78-787badb7d66e.png">
+- template 폴더  
+  + home.html   :
+```html
+<html>
+  <head>
+    <title>JobSearch</title>
+  </head>
+  <body>
+    <h1>JobSearch</h1>
+    <form action = "/report" method = "get">
+    <input placeholder="Search for a Job" requried name = "word">
+    <button>Search</button>
+
+    </form>
+  </body>
+</html>
+```
+
+  + report.html :
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Search</title>
+    <style>
+      section{
+        display:grid;
+        gap:20px;
+        grid-template-columns: repeat(4,1fr);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Search Results</h1>
+    <h1>Found {{many}} jobs for {{search_by}}<h1> 
+    <a href="/export?word={{search_by}}">Export to CSV</a>
+    <section>
+      <h4>Title</h4>
+      <h4>Company</h4>
+      <h4>Location</h4>
+      <h4>Link</h4>
+      {% for job in jobs %}
+        <span>{{job.title}}</span>
+        <span>{{job.company}}</span>
+        <span>{{job.location}}</span>
+        <a href = "{{job.link}}" target="_blank">apply</a>
+      {% endfor %}
+    </section>
+  </body>
+</html>
+```
+![image](https://user-images.githubusercontent.com/57933835/114275790-ca813200-9a5e-11eb-8d91-2cc8ade2a2f5.png)
 
 
-### **회원가입 & 로그인 (SignUp & SignIn)**
+### apps.py
+![image](https://user-images.githubusercontent.com/57933835/114275736-9b6ac080-9a5e-11eb-8c6f-77a74e342f09.png)
+![image](https://user-images.githubusercontent.com/57933835/114275757-afaebd80-9a5e-11eb-8e29-fe0f226a228c.png)
 
-- bcrypt를 사용한 암호화
-- JWT 로그인 구현 및 @decorator를 이용해서 토큰 인증
-- Email&닉네임 정규화를 통한 Validation적용
-
-### **장바구니**
-
-- 상품의 장바구니 등록 (개수 포함)
-- 장바구니 내역 조회
-- 장바구니 상품 수량 변경 및 가격반영(DB에 전부 반영되도록 설정)
-
-### 상품 리스트 페이지
-
-- 카테고리 (카테고리를 반영하여 상품 나열)
-- 상품 상세 페이지 (상품 정보: 가격, 사진, 옵션 )
- - 쿼리스트링을 활용한 정렬 및 필터링(다중 필터) 기능 구현
- 
-### 상품 디테일 페이지
-
-- 이미지를 포함한 좋아요 기능 구현
-- 상품 상세 페이지 구현
 
 ---
-
-# 🏠후기
-
-## 👩‍💻Frontend
-
-- [김병진]
-- 김동하
-- 
-
-## 🧑‍💻 Backend
-
-- [이혜성](https://velog.io/@hyeseong-dev/Wecode1%EC%B0%A8-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%ED%9A%8C%EA%B3%A0%EB%A1%9D)
-- 정지원
-- 
 
 
 
 # **레퍼런스**
 
-- 이 프로젝트는 [배민문방구](https://store.baemin.com/main/index.php) 사이트를 참조하여 학습목적으로 만들었습니다.
-- 실무수준의 프로젝트이지만 학습용으로 만들었기 때문에 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다.
-- 이 프로젝트에서 사용하고 있는 사진 대부분은 위코드에서 구매한 것이므로 해당 프로젝트 외부인이 사용할 수 없습니다.
+- 이 프로젝트는 [stackoverflow], [saramin], [indeed]의 정보를 참조하여 학습목적으로 만들었습니다.
+- 학습용으로 만들었기 때문에 이 코드를 활용하여 이득을 취하거나 무단 배포할 경우 법적으로 문제될 수 있습니다.
+
