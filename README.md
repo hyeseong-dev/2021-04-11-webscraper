@@ -1,6 +1,7 @@
 # Job Search WebCrawler 🚄
 
 - 진행기간 : 2021년 04월 04일 ~ 2021년 04월 10일
+
 [사진1]
 ![image](https://user-images.githubusercontent.com/57933835/114275508-c1dc2c00-9a5d-11eb-8d71-7e500cff9cdc.png)
 
