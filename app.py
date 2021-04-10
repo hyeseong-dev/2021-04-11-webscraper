@@ -1,6 +1,4 @@
-# from scrapper.main  import main as get_jobs
-from scrapper.so               import get_jobs as so_get_jobs
-from scrapper.indeed           import get_jobs as indeed_get_jobs
+from scrapper.main             import get_jobs
 from scrapper.csv_exporter     import save_to_file
 from flask                     import (
     Flask,
@@ -28,10 +26,10 @@ def report():
         if existingJobs:
             jobs = existingJobs
         else:
-            so_jobs = so_get_jobs(word)
-            indeed_jobs = indeed_get_jobs(word)
-            jobs = so_jobs + indeed_jobs
-            db[word] = indeed_jobs + so_jobs
+            # so_jobs = so_get_jobs(word)
+            # indeed_jobs = indeed_get_jobs(word)
+            jobs = get_jobs(word)
+            db[word] = get_jobs(word)
     return render_template('report.html', 
                             search_by=word, 
                             many=len(jobs),

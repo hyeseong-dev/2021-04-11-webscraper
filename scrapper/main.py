@@ -5,14 +5,13 @@ from scrapper.so             import get_jobs as get_so_jobs
 from scrapper.saramin        import get_jobs as get_sramin_jobs
 from scrapper.csv_exporter   import save_to_file
 
+def get_jobs(word):
+    saramin = get_sramin_jobs(word)
+    indeed  = get_indeed_jobs(word)
+    so      = get_so_jobs(word)
+    jobs    = indeed + so + saramin
+    return jobs
 
-indeed   = get_indeed_jobs()
-# so       = get_so_jobs()
-# saraimin = get_sramin_jobs()
-
-print(indeed_jobs)
-
-# jobs = indeed_jobs + so_jobs
-# save_to_file(jobs)
+save_to_file(jobs)
 
 

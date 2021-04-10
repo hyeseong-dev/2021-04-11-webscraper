@@ -1,11 +1,7 @@
 import re
 import requests
-
 from math         import ceil
-from urllib.parse import unquote
-from pprint       import pprint
 from bs4          import BeautifulSoup
-
 
 def get_last_page(url):
     result     = requests.get(url)
@@ -15,7 +11,6 @@ def get_last_page(url):
     max_page = ceil(float(''.join(str_list_max_page))*0.01)
     return max_page
 
-
 def extract_job(html):
         title   = html.find('h2', {'class':'job_tit'}).find('a')['title']
         company = html.find('strong', {'class': 'corp_name'}).find('a')['title'] # find: 첫 번째 찾은 결과를 돌려줌 V.S find_all : 전체를 찾아서 리스트에 담아 리턴함
@@ -24,12 +19,10 @@ def extract_job(html):
         for loc in locations:
             location += loc.get_text()
         job_id = html['value']
-        return {
-                'title': title, 
+        return {'title': title, 
                 'company': company, 
                 'location':location, 
-                'link': f'https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx={job_id}'
-             }
+                'link': f'https://www.saramin.co.kr/zf_user/jobs/relay/view?rec_idx={job_id}'}
 
 def extract_jobs(last_page,url):
     jobs=list()
@@ -43,10 +36,8 @@ def extract_jobs(last_page,url):
             jobs.append(job)
     return jobs
 
-
 def get_jobs(word):
-    KEYWORD = 'java'
-    url = f'https://www.saramin.co.kr/zf_user/search/recruit?searchword={KEYWORD}'
+    url = f'https://www.saramin.co.kr/zf_user/search/recruit?searchword={word}'
     last_page = get_last_page(url)
     jobs      = extract_jobs(last_page,url)
     return jobs
